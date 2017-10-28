@@ -13,4 +13,22 @@ npm install
 npm start
 ```
 
-端口是3000
+核心点是：``routes/index.js`` 这个文件，下面这段逻辑：
+
+```javascript
+if (isMobile(req.headers['user-agent'])) {
+    title = '移动端'
+} else {
+    title = 'PC端'
+}
+```
+
+通过``user-agent``来判断是移动端，还是pc端。
+
+判断函数是通过关键字来正则匹配判断：
+
+```javascript
+function isMobile (agent) {
+    return /(iphone|ipod|ipad|android)/.test(agent.toLowerCase())
+}
+```
